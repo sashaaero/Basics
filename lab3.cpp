@@ -42,19 +42,19 @@ void fakeReccurency(){
     unsigned int m = 0;
     double y0, y1, y2;
     while(m <= 3){
-        std::cout << "Задайте m (>3) >> ";
+        std::cout << "Input m (>3) >> ";
         std::cin >> m;
     }
-    std::cout << "Задайте y0 >> ";
+    std::cout << "Input y0 >> ";
     std::cin >> y0;
-    std::cout << "Задайте y1 >> ";
+    std::cout << "Input y1 >> ";
     std::cin >> y1;
-    std::cout << "Задайте y1 >> ";
+    std::cout << "Input y1 >> ";
     std::cin >> y2;
 
-    std::cout << "Вычисления через while " << fakeRecurrencyWhile(m, y0, y1, y2) << std::endl;
-    std::cout << "Вычисления через do while " << fakeRecurrencyDoWhile(m, y0, y1, y2) << std::endl;
-    std::cout << "Вычисления через for " << fakeReccurencyFor(m, y0, y1, y2) << std::endl;
+    std::cout << "while loop says " << fakeRecurrencyWhile(m, y0, y1, y2) << std::endl;
+    std::cout << "do while loop says " << fakeRecurrencyDoWhile(m, y0, y1, y2) << std::endl;
+    std::cout << "for loop says " << fakeReccurencyFor(m, y0, y1, y2) << std::endl;
 }
 
 double limitWhile(double A, double eps){
@@ -96,19 +96,19 @@ double limitFor(double A, double eps){
 
 void limit(){
     double A, eps;
-    std::cout << "Задайте A >> ";
+    std::cout << "Input A >> ";
     std::cin >> A;
-    std::cout << "Задайте точность >> ";
+    std::cout << "Input precision >> ";
     std::cin >> eps;
 
-    std::cout << "Вычисления цикла while " << limitWhile(A, eps) << std::endl;
-    std::cout << "Вычисления цикла do while " << limitDoWhile(A, eps) << std::endl;
-    std::cout << "Вычисления цикла for " << limitFor(A, eps) << std::endl;
+    std::cout << "while loop says " << limitWhile(A, eps) << std::endl;
+    std::cout << "do while loop says " << limitDoWhile(A, eps) << std::endl;
+    std::cout << "for  loop says " << limitFor(A, eps) << std::endl;
 }
 
 void lab3(){
     unsigned short task;
-    std::cout << "Задание ";
+    std::cout << "Task >> ";
     std::cin >> task;
     switch(task){
         case 1:
@@ -118,7 +118,7 @@ void lab3(){
             limit();
             break;
         default:
-            std::cout << "Неверный номер ";
+            std::cout << "Wrong input ";
             break;
     }
 }

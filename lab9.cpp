@@ -30,15 +30,15 @@ struct Book{
     }
 
     friend istream& operator >> (istream& is, Book& book) {
-        cout << "Название: ";
+        cout << "Title: ";
         is >> book.title;
-        cout << "Автор: ";
+        cout << "Author: ";
         is >> book.author;
-        cout << "Издание: ";
+        cout << "Version: ";
         is >> book.version;
-        cout << "Год: ";
+        cout << "Year: ";
         is >> book.year;
-        cout << "Тираж: ";
+        cout << "Amount: ";
         is >> book.amount;
         return is;
     }
@@ -53,11 +53,11 @@ struct Book{
     }
 
     friend ostream& operator << (ostream& os, Book& book) {
-        os << "1. Название: " << book.title  << endl;
-        os << "2. Автор: "    << book.author << endl;
-        os << "3. Издание: "  << book.version  << endl;
-        os << "4. Год: "      << book.year   << endl;
-        os << "5. Тираж: "    << book.title  << endl;
+        os << "1. Title: " << book.title  << endl;
+        os << "2. Author: "    << book.author << endl;
+        os << "3. Version: "  << book.version  << endl;
+        os << "4. Year: "      << book.year   << endl;
+        os << "5. Amount: "    << book.amount  << endl;
         os << endl;
         return os;
     }
@@ -72,25 +72,9 @@ struct Book{
 
     void printBookInLine(){
         cout << this->author << ": \"" << this->title << "\" ";
-        cout << "изд. " << this->version << " в кол-ве " << this->amount;
-        cout << " " << this->year << "год" << endl;
+        cout << "ver. " << this->version << " with amount of " << this->amount;
+        cout << " " << this->year << "year" << endl;
     }
-//
-//    void write(ofstream& fs){
-//        fs <<   this->title <<
-//                this->author <<
-//                this->version <<
-//                this->year <<
-//                this->amount;
-//    }
-//
-//    void read(ifstream& fs){
-//        fs >>   this->title >>
-//                this->author >>
-//                this->version >>
-//                this->year >>
-//                this->amount;
-//    }
 
     bool operator == (const Book& cmp) {
         return (this->author == cmp.author) &&
@@ -164,7 +148,7 @@ struct Library{
         int key;
         cin >> key;
         if (!(key >= 1 && key < 6)) {
-            cout << "Неверный ключ";
+            cout << "Wrong key";
             return;
         }
         switch (key) {
@@ -211,7 +195,7 @@ struct Library{
         printMenu(SORT);
         cin >> sortKey;
         if (!(sortKey >= 1 && sortKey <= 5)) {
-            cout << "Неверный ключ, поиск невозможен";
+            cout << "Wrong key";
         }
         Book::sortBy = sortKey;
         sort(books.begin(), books.end());
@@ -226,7 +210,7 @@ struct Library{
         printMenu(FIND);
         cin >> key;
         if (!(key >= 1 && key <= 5)) {
-            cout << "Неверный ключ, поиск невозможен";
+            cout << "Wrong key";
             return;
         }
 
@@ -284,10 +268,10 @@ struct Library{
         }
 
         if (booksFound.size() == 0){
-            cout << "По данному ключу и параметру книг не найдено";
+            cout << "No matches found";
             return;
         }
-        cout << "Найдено " << booksFound.size() << " книг" << endl;
+        cout << "Found " << booksFound.size() << " books" << endl;
 
         int i = 0;
         for (Book* book: booksFound) {
@@ -296,11 +280,11 @@ struct Library{
         }
 
         int num;
-        cout << "Выберите книгу для редактирования, или 0, чтобы выйти" << endl;
+        cout << "Choose book to edit or 0 to exit" << endl;
         cout << ">> ";
         cin >> num;
         if (!(num >= 0 && num < booksFound.size())){
-            cout << "Неверный индекс";
+            cout << "Wrong index";
             return;
         } else if (num == 0){
             return;
@@ -311,40 +295,40 @@ struct Library{
 };
 
 void _bookProp(){
-    cout << "1. Название" << endl;
-    cout << "2. Автор" << endl;
-    cout << "3. Издание" << endl;
-    cout << "4. Год издания" << endl;
-    cout << "5. Количество" << endl;
+    cout << "1. Title" << endl;
+    cout << "2. Author" << endl;
+    cout << "3. Version" << endl;
+    cout << "4. Year" << endl;
+    cout << "5. Amount" << endl;
 }
 
 void printMenu(int mode){
     system("clear");
     switch (mode){
         case MAIN:
-            cout << "Выберите действие" << endl;
-            cout << "1. Добавить книгу" << endl;
-            cout << "2. Найти/Редактировать книгу" << endl;
-            cout << "3. Список всех книг" << endl;
-            cout << "0. Выход" << endl;
+            cout << "Choose action" << endl;
+            cout << "1. Add book" << endl;
+            cout << "2. Find/Edit book" << endl;
+            cout << "3. List book" << endl;
+            cout << "0. Exit" << endl;
             cout << ">> ";
             break;
         case FIND:
-            cout << "Выберите ключ для поиска" << endl;
+            cout << "Choose key for search" << endl;
             _bookProp();
             cout << ">> ";
             break;
         case SORT:
-            cout << "Выберите ключ для сортировки" << endl;
+            cout << "Choose sort key" << endl;
             _bookProp();
-            cout << "6. Удалить" << endl;
+            cout << "6. Delete book" << endl;
             cout << ">> ";
         case EDIT:
-            cout << "Что хотите изменить?" << endl;
+            cout << "What you want to change?" << endl;
             _bookProp();
             cout << ">> ";
         default:
-            cout << "Неизвестное меню. Ошибка..." << endl;
+            cout << "Unknown menu, error" << endl;
     }
 }
 

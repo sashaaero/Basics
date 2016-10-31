@@ -5,7 +5,7 @@
 void arrayTask(){
     int cs(-1), ce(-1), ms(-1), me(-1); // current start/end, max start/end
     int array[N];
-    std::cout << "Введите " << N << " элементов массива" << std::endl;
+    std::cout << "Input " << N << " of array elements" << std::endl;
     for(int i = 0; i < N; i++){
         std::cin >> array[i];
         if(array[i] == 0){
@@ -29,9 +29,9 @@ void arrayTask(){
         }
     }
     if(ms != -1){
-        printf("Секвенция длинной %d, начало: %d, конец: %d\n", (me - ms + 1), ms, me);
+        printf("Sequence with length %d, begin: %d, end: %d\n", (me - ms + 1), ms, me);
     } else {
-        std::cout << "Нулей в массиве нет" << std::endl;
+        std::cout << "There is not zeros in array" << std::endl;
     }
 }
 
@@ -47,7 +47,7 @@ void printMatrix(int matrix[][M]){
 void matrixTask(){
     int mni(-1), mnj(-1); // max negative i/j
     int matrix[M][M];
-    std::cout << "Ввод матрицы (5x5)" << std::endl;
+    std::cout << "Input matrix (5x5)" << std::endl;
     for(int i = 0; i < M; i++){
         for(int j = 0; j < M; j++){
             std::cin >> matrix[i][j];
@@ -60,7 +60,7 @@ void matrixTask(){
         }
     }
 
-    std::cout << "Результат " << std::endl;
+    std::cout << "Result " << std::endl;
     
     if(mni != -1 and mnj != -1){
         for(int j = 0; j < M; j++){
@@ -75,7 +75,7 @@ void matrixTask(){
 
 void lab4(){
     unsigned short task;
-    std::cout << "Задание ";
+    std::cout << "Task >> ";
     std::cin >> task;
     switch(task){
         case 1:
@@ -85,7 +85,7 @@ void lab4(){
             matrixTask();
             break;
         default:
-            std::cout << "Неверный номер " << std::endl;
+            std::cout << "Wrong task " << std::endl;
             break;
     }
 }

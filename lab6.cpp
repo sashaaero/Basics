@@ -44,7 +44,7 @@ void printMatrix(int** matrix, int size){
 
 void lab6(){
     int curr_in, size, len;
-    std::cout << "Введите размер матрицы >> ";
+    std::cout << "Input matrix's size >> ";
     std::cin >> size;
 
     len = size * size;
@@ -93,7 +93,7 @@ void lab6(){
                 for(int s = 0; s < step; s++)
                     matrix[--i][++j] = array[++x];
                 if((size % 2 == 1) and increase)
-                    increase = !(step == size - 1);
+                    increase = step != size - 1;
                 way = increase ? right : down;
                 break;
             }

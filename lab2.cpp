@@ -15,11 +15,11 @@ void lab2(){
     int zone;
     float x, y, area;
 
-    std::cout << "Введите координаты точки ";
+    std::cout << "Dot coordinates >> ";
     std::cin >> x >> y;
 
     while(not(-2 < x and x < 2 or -2 < y and y< 2)){
-        std::cout << "Неверный ввод\nПовторите >> ";
+        std::cout << "Wrong input\nTry again >> ";
         std::cin >> x >> y;
     }
 
@@ -51,14 +51,14 @@ void lab2(){
             area = (M_PI / 3) - (0.5 * sqrt(0.75));
             break;
         case 0:{
-            std::cout << "Точка (";
+            std::cout << "Dot (";
             std::cout << x << ";" << y;
-            std::cout << ") не принадлежит ни одной из зон" << std::endl;
+            std::cout << ") does not appear in any area" << std::endl;
             return;
         }
     }
 
-    std::cout << "Точка (";
+    std::cout << "Dot (";
     std::cout << x << ";" << y;
-    std::cout << ") лежит в зоне M" << zone << " и ее площадь равна " << area << std::endl;
+    std::cout << ") appears in area M" << zone << " with square of " << area << std::endl;
 }
