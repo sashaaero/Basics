@@ -2,9 +2,10 @@
 #include "functions.h"
 
 int main(){
+    setlocale(LC_ALL, "Russian");
     unsigned int lab;
     while(true){
-        std::cout << "Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР°СЏ СЂР°Р±РѕС‚Р° ";
+        std::cout << "Введите номер лабораторной работы >> ";
         std::cin >> lab;
         switch(lab){
             case 1:
@@ -34,7 +35,7 @@ int main(){
             case 0:
                 return 0;
             default:
-                std::cout << "РўР°РєРѕР№ Р»Р°Р±РѕСЂР°С‚РѕСЂРЅРѕР№ СЂР°Р±РѕС‚С‹ РЅРµС‚" << std::endl;
+                std::cout << "Неверный номер лабораторной работы" << std::endl;
                 break;
         }
     }
