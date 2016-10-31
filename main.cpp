@@ -2,7 +2,6 @@
 #include "functions.h"
 
 int main(){
-    setlocale(LC_ALL, "Russian");
     unsigned int lab;
     while(true){
         std::cout << "Enter lab number >> ";
