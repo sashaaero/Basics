@@ -5,7 +5,7 @@ int main(){
     setlocale(LC_ALL, "Russian");
     unsigned int lab;
     while(true){
-        std::cout << "¬ведите номер лабораторной работы >> ";
+        std::cout << "Enter lab number >> ";
         std::cin >> lab;
         switch(lab){
             case 1:
@@ -35,7 +35,7 @@ int main(){
             case 0:
                 return 0;
             default:
-                std::cout << "Ќеверный номер лабораторной работы" << std::endl;
+                std::cout << "This lab does not exist" << std::endl;
                 break;
         }
     }
