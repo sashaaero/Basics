@@ -11,7 +11,7 @@ int main(){
                 lab1();
                 break;
             case 2:
-                lab2();
+                //lab2();
                 break;
             case 3:
                 lab3();

@@ -59,17 +59,17 @@ private:
 public:
     MyList() : _begin(nullptr), _end(nullptr), _size(0){}
 
-    MyList(vector<T> objects) : MyList() {
+    MyList(T objects[], int size) : MyList() {
         T* prev = nullptr;
-        for (auto t = objects.begin(); t != objects.end(); t++) {
+        for (size_t i = 0; i < size; i++) {
             if (_size == 0) {
-                _begin = &*t;
-                prev = &*t;
+                _begin = objects + i;
+                prev = objects + i;
             } else {
-                prev->setNext(&*t);
-                (*t).setPrev(prev);
-                _end = &*t;
-                prev = &*t;
+                prev->setNext(objects + i);
+                objects[i].setPrev(prev);
+                _end = objects + i;
+                prev = objects + i;
             }
             _size++;
         }
@@ -79,14 +79,15 @@ public:
         return _size;
     }
 
-    void push_back(T& t) {
+    void push_back(T* t) {
+        T *toPush = new T(*t);
         if (_size == 0) {
-            _begin = &t;
-            _end = &t;
+            _begin = toPush;
+            _end = toPush;
         } else {
-            _end->setNext(&t);
-            t.setPrev(_end);
-            _end = &t;
+            _end->setNext(toPush);
+            toPush->setPrev(_end);
+            _end = toPush;
         }
         _size++;
     }
@@ -100,45 +101,42 @@ public:
 
     friend std::ostream& operator << (std::ostream& os, MyList<T>& list) {
         for (size_t i = 0; i < list.size(); i++) {
-            os << list[i] << std::endl;
+            os << i + 1 << ". " <<*(list[i]) << std::endl;
         }
         return os;
     }
 
-    T operator [] (size_t index) const {
+    T* operator [] (size_t index) const {
         if (index >= _size) {
-            return *_end;
+            return _end;
         }
         if (index == 0) {
-            return *_begin;
+            return _begin;
         }
         T* curr = _begin;
         for (size_t i = 0; i != index; i++) {
             curr = curr->next();
         }
-        return *curr;
+        return curr;
     }
 
-    MyList<T> operator && (const MyList<T>& another) const {
+    MyList<T> operator || (const MyList<T>& another) const {
         MyList<T> list;
-        T tmp;
         for (size_t i = 0; i < _size; i++) {
-            tmp = (*this)[i];
-            list.push_back(tmp);
+            list.push_back((*this)[i]);
         }
 
         for (size_t i = 0; i < another.size(); i++) {
-            tmp = another[i];
-            if (list.get(tmp) == -1) {
-                list.push_back(tmp);
+            if (list.get(another[i]) == -1) {
+                list.push_back(another[i]);
             }
         }
         return list;
     }
 
-    int get(T& t) {
+    int get(T* t) {
         for (int i = 0; i < _size; i++) {
-            if ((*this)[i] == t) {
+            if (*(*this)[i] == *t) {
                 return i;
             }
         }
@@ -155,7 +153,7 @@ public:
 };
 
 void lab10(){
-    vector<Student> kr = {
+    Student kr[] = {
         Student("Leonid", "Abuzin"),
         Student("Vladislav", "Anikanov"),
         Student("Vera", "Bezrukavaya"),
@@ -172,7 +170,9 @@ void lab10(){
         Student("Yan", "Tsvitchenko")
     };
 
-    vector<Student> lab = {
+    int krSize = 14;
+
+    Student lab[] = {
         Student("Leonid", "Abuzin"),
         Student("Vladislav", "Anikanov"),
         Student("Gennagiy", "Vasilyev"),
@@ -181,17 +181,18 @@ void lab10(){
         Student("Alexander", "Tischenko")
     };
 
-    MyList<Student> krList(kr);
-    MyList<Student> labList(lab);
-    MyList<Student> goodGuys = krList && labList;
+    int labSize = 6;
 
-//    std::cout << "Сдавшие ТЗ" << std::endl;
-//    std::cout << krList << std::endl;
-//
-//    std::cout << "Сдающие лабы" << std::endl;
-//    std::cout << labList << std::endl;
-//
-//    std::cout << "Молодцы" << std::endl;
-//    std::cout << goodGuys;
+    MyList<Student> krList(kr, krSize);
+    MyList<Student> labList(lab, labSize);
+    MyList<Student> goodGuys = krList || labList;
 
+    std::cout << "Sdavshie TZ" << std::endl;
+    std::cout << krList << std::endl;
+
+    std::cout << "Sdavshie labi" << std::endl;
+    std::cout << labList << std::endl;
+
+    std::cout << "Molodci" << std::endl;
+    std::cout << goodGuys << std::endl;
 };
